@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glam Fashion Hub - Women Fashion & Beauty Mega-Store</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:sans-serif;background:#fff5f7;color:#1e293b;line-height:1.5}
+header{background:linear-gradient(135deg,#be185d,#831843);color:white;padding:28px 15px;text-align:center;box-shadow:0 4px 12px rgba(190,24,93,0.2)}
+header h1{font-size:28px;margin-bottom:6px}
+header p{font-size:15px;opacity:0.9}
+.container{max-width:1200px;margin:20px auto;padding:0 15px}
+.controls{background:white;padding:15px;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,0.05);margin-bottom:20px}
+.search-input{width:100%;padding:12px 15px;border:2px solid #fbcfe8;border-radius:8px;font-size:15px;margin-bottom:12px;outline:none}
+.search-input:focus{border-color:#db2777}
+.brand-filters{display:flex;flex-wrap:wrap;gap:8px}
+.filter-btn{padding:8px 14px;border:none;border-radius:20px;background:#fce7f3;color:#9d174d;font-weight:bold;cursor:pointer;font-size:13.5px;transition:0.2s}
+.filter-btn.active,.filter-btn:hover{background:#db2777;color:white}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:18px}
+.card{background:white;border-radius:12px;padding:15px;box-shadow:0 4px 12px rgba(0,0,0,0.06);display:flex;flex-direction:column;justify-content:space-between;transition:0.2s}
+.card:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(219,39,119,0.15)}
+.cat-tag{display:inline-block;background:#fdf2f8;color:#db2777;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:bold;margin-bottom:6px}
+.card h3{font-size:17px;margin-bottom:8px;color:#0f172a}
+.specs{list-style:none;font-size:13px;color:#475569;margin-bottom:10px}
+.specs li{margin-bottom:4px}
+.price{font-size:20px;font-weight:bold;color:#be185d;margin-top:8px}
+footer{text-align:center;padding:25px;color:#64748b;font-size:13px;margin-top:40px;background:white;border-top:1px solid #fce7f3}
+</style>
+</head>
+<body>
+<header>
+<h1>✨ Glam Fashion Hub</h1>
+<p>Women Fashion, Dresses, Shoes, Handbags & Beauty Mega-Store</p>
+</header>
+<div class="container">
+<div class="controls">
+<input type="text" id="searchBox" class="search-input" placeholder="Search dresses, heels, handbags, makeup, jewelry..." onkeyup="filterItems()">
+<div class="brand-filters">
+<button class="filter-btn active" onclick="filterCat('All', this)">All Collections</button>
+<button class="filter-btn" onclick="filterCat('Dresses', this)">👗 Dresses</button>
+<button class="filter-btn" onclick="filterCat('Shoes', this)">👠 Shoes & Heels</button>
+<button class="filter-btn" onclick="filterCat('Bags', this)">👜 Handbags</button>
+<button class="filter-btn" onclick="filterCat('Jewelry', this)">💍 Jewelry & Watches</button>
+<button class="filter-btn" onclick="filterCat('Beauty', this)">💄 Beauty & Makeup</button>
+</div>
+</div>
+<div id="itemsGrid" class="grid"></div>
+</div>
+<footer>
+<p>© 2026 Glam Fashion Hub | Women Fashion & Beauty Mega-Store. As an Amazon Associate, we earn from qualifying purchases.</p>
+</footer>
+<script>
+const fashionData=[
+{cat:"Dresses",name:"Floral Maxi Summer Sundress",style:"Bohemian Wrap V-Neck",material:"Soft Breathable Chiffon",fit:"A-Line Flowing Fit",occasion:"Casual, Beach & Party",price:"$39",review:"Elegant floral maxi dress with flattering waist tie and lightweight comfort."},
+{cat:"Dresses",name:"Satin Cocktail Evening Midi Dress",style:"Sleeveless Ruched Bodycon",material:"Silky Luxury Satin",fit:"Slim Figure-Hugging",occasion:"Wedding Guest & Dinner",price:"$49",review:"Stunning glossy satin midi dress that turns heads at any evening event."},
+{cat:"Dresses",name:"Classic Black Little Party Dress",style:"Off-Shoulder Flare Mini",material:"Stretch Ponte Knit",fit:"Fit & Flare Silhouette",occasion:"Cocktail & Night Out",price:"$44",review:"Timeless little black dress with stretch comfort and chic off-shoulder neckline."},
+{cat:"Dresses",name:"Long Sleeve Knit Sweater Dress",style:"Turtleneck Belted Midi",material:"Cozy Ribbed Cashmere-Blend",fit:"Relaxed Belted Waist",occasion:"Autumn, Winter & Office",price:"$46",review:"Warm, stylish ribbed sweater dress with removable waist belt."},
+{cat:"Dresses",name:"Embroidered Lace Formal Gown",style:"Floor-Length Pleated Skirt",material:"Delicate Floral Lace + Tulle",fit:"Empire Waist Elegance",occasion:"Prom, Gala & Bridesmaid",price:"$69",review:"Graceful floor-length lace gown designed for formal celebrations."},
+{cat:"Dresses",name:"Casual Cotton T-Shirt Pocket Dress",style:"Short Sleeve Knee-Length",material:"100% Organic Cotton",fit:"Loose Everyday Comfort",occasion:"Daily Wear & Travel",price:"$28",review:"Super soft everyday casual dress with hidden side pockets."},
+{cat:"Shoes",name:"Classic Pointed-Toe Stiletto Heels",style:"3.5-Inch Slim Heel Pumps",material:"Faux Suede & Cushioned Insole",fit:"True to Size Comfort",occasion:"Office, Party & Formal",price:"$42",review:"Elegant pointed-toe pumps with padded footbed for all-night comfort."},
+{cat:"Shoes",name:"Strappy Block Heel Sandals",style:"2.5-Inch Chunky Block Heel",material:"Vegan Leather + Ankle Buckle",fit:"Stable Wide Support",occasion:"Weddings & Summer Outings",price:"$38",review:"Chic strappy heels with sturdy block heel for effortless walking."},
+{cat:"Shoes",name:"White Platform Fashion Sneakers",style:"1.8-Inch Cushioned Platform",material:"Breathable PU Leather",fit:"Memory Foam Arch Support",occasion:"Casual, Walking & Travel",price:"$45",review:"Trendy minimalist white sneakers that pair with dresses and jeans."},
+{cat:"Shoes",name:"Suede Ankle Booties with Side Zip",style:"Low Stacked Block Heel",material:"Water-Resistant Microsuede",fit:"Cushioned All-Day Sole",occasion:"Fall, Winter & Street Style",price:"$54",review:"Versatile ankle boots with easy side zipper and anti-slip sole."},
+{cat:"Shoes",name:"Crystal Bow Slingback Evening Heels",style:"Sparkling Rhinestone Strap",material:"Satin Upper + Soft Lining",fit:"Adjustable Slingback",occasion:"Bridal, Prom & Parties",price:"$59",review:"Glamorous crystal-embellished slingback heels for special occasions."},
+{cat:"Shoes",name:"Ballet Flats with Bow Detail",style:"Foldable Slip-On Comfort",material:"Soft Nappa Vegan Leather",fit:"Flexible Rubber Outsole",occasion:"Work, Driving & Everyday",price:"$29",review:"Lightweight, blister-free ballet flats for busy workdays."},
+{cat:"Bags",name:"Quilted Chain Crossbody Shoulder Bag",style:"Gold-Tone Chain Strap",material:"Luxury Vegan Quilted Leather",fit:"Compact + Inner Zip Pocket",occasion:"Dinner, Party & Shopping",price:"$36",review:"Designer-inspired quilted crossbody bag with convertible gold chain."},
+{cat:"Bags",name:"Large Structured Work Tote Bag",style:"Fits 15.6-Inch Laptop",material:"Scratch-Resistant Saffiano PU",fit:"3 Main Compartments",occasion:"Office, College & Travel",price:"$48",review:"Spacious, water-resistant leather tote bag with laptop sleeve and zipper."},
+{cat:"Bags",name:"Mini Top-Handle Satchel Purse",style:"Detachable Crossbody Strap",material:"Pebbled Faux Leather",fit:"Structured Mini Silhouette",occasion:"Brunch & Casual Outings",price:"$34",review:"Adorable structured mini satchel available in 12 trendy colors."},
+{cat:"Bags",name:"Crystal Clutch Evening Bag",style:"Sparkling Metallic Clasp",material:"Glitter Mesh + Satin Lining",fit:"Fits Phone, Keys & Lipstick",occasion:"Wedding, Gala & Prom",price:"$32",review:"Dazzling evening clutch with detachable chain for formal events."},
+{cat:"Bags",name:"Anti-Theft Fashion Travel Backpack",style:"Back Zipper Security Design",material:"Waterproof Nylon + Leather Trim",fit:"Lightweight Multi-Pocket",occasion:"Travel, City & Daily",price:"$39",review:"Stylish and secure women's backpack purse with hidden back zipper."},
+{cat:"Bags",name:"Woven Straw Summer Beach Tote",style:"Handwoven Boho Shoulder Bag",material:"Natural Eco-Friendly Straw",fit:"Extra-Large Capacity",occasion:"Beach, Resort & Summer",price:"$29",review:"Chic woven straw tote bag with magnetic closure and inner pouch."},
+{cat:"Jewelry",name:"18K Gold Plated Layered Necklace Set",style:"Dainty Herringbone + Pendant",material:"Tarnish-Free Stainless Steel",fit:"Adjustable 16-18 Inch Chain",occasion:"Everyday & Gift Ready",price:"$22",review:"Waterproof, hypoallergenic layered gold necklace set that never fades."},
+{cat:"Jewelry",name:"Swarovski Crystal Tennis Bracelet",style:"Sparkling Cubic Zirconia Stones",material:"Rhodium / 18K Gold Plated",fit:"Secure Double-Latch Clasp",occasion:"Party, Anniversary & Bridal",price:"$26",review:"Brilliant diamond-look tennis bracelet packaged in a luxury gift box."},
+{cat:"Jewelry",name:"Chunky Gold Hoop Earrings (3-Pair Set)",style:"Lightweight Hollow Tube Hoops",material:"14K Gold Plated Hypoallergenic",fit:"Secure Click-Top Closure",occasion:"Daily Glam & Office",price:"$18",review:"Feather-light gold hoop earrings in 3 sizes that won't pull your ears."},
+{cat:"Jewelry",name:"Rose Gold Mesh Women's Luxury Watch",style:"Ultra-Thin Minimalist Dial",material:"Stainless Steel Milanese Mesh",fit:"Adjustable Magnetic Clasp",occasion:"Business, Casual & Gift",price:"$49",review:"Elegant rose gold wristwatch with Japanese quartz movement and water resistance."},
+{cat:"Jewelry",name:"Freshwater Pearl Drop Earrings",style:"14K Gold Dangle Hook",material:"Genuine Cultured Pearls",fit:"Lightweight Delicate Drop",occasion:"Wedding, Bridal & Formal",price:"$29",review:"Timeless luminous pearl drop earrings for effortless sophistication."},
+{cat:"Jewelry",name:"Stackable Crystal Eternity Ring Set",style:"5-Piece Mix & Match Bands",material:"18K Gold Vermeil + AAA CZ",fit:"Sizes 5 to 10 Available",occasion:"Everyday & Stacking",price:"$24",review:"Versatile set of 5 sparkling stackable rings to wear solo or together."},

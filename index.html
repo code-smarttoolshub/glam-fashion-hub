@@ -76,3 +76,29 @@ const fashionData=[
 {cat:"Jewelry",name:"Rose Gold Mesh Women's Luxury Watch",style:"Ultra-Thin Minimalist Dial",material:"Stainless Steel Milanese Mesh",fit:"Adjustable Magnetic Clasp",occasion:"Business, Casual & Gift",price:"$49",review:"Elegant rose gold wristwatch with Japanese quartz movement and water resistance."},
 {cat:"Jewelry",name:"Freshwater Pearl Drop Earrings",style:"14K Gold Dangle Hook",material:"Genuine Cultured Pearls",fit:"Lightweight Delicate Drop",occasion:"Wedding, Bridal & Formal",price:"$29",review:"Timeless luminous pearl drop earrings for effortless sophistication."},
 {cat:"Jewelry",name:"Stackable Crystal Eternity Ring Set",style:"5-Piece Mix & Match Bands",material:"18K Gold Vermeil + AAA CZ",fit:"Sizes 5 to 10 Available",occasion:"Everyday & Stacking",price:"$24",review:"Versatile set of 5 sparkling stackable rings to wear solo or together."},
+  {cat:"Beauty",name:"Dyson Airwrap Style Hot Air Brush",style:"5-in-1 Curling, Drying & Smoothing",material:"Negative Ion Ceramic Coating",fit:"3 Temp + 3 Airflow Controls",occasion:"Salon Hair Styling at Home",price:"$69",review:"All-in-one hot air styler for bouncy curls and silky blowouts without heat damage."},
+{cat:"Beauty",name:"18-Color Velvet Eyeshadow Palette",style:"Matte, Shimmer & Glitter Shades",material:"Highly Pigmented Waterproof",fit:"Includes Dual-Ended Brush",occasion:"Daytime & Glam Makeup",price:"$19",review:"Long-lasting blendable eyeshadow palette with warm nudes and party shimmers."},
+{cat:"Beauty",name:"Matte Velvet Liquid Lipstick Set (6-Pack)",style:"24-Hour Transfer-Proof Wear",material:"Vitamin E Hydrating Formula",fit:"6 Best-Selling Nude & Red",occasion:"Everyday & Evening Glam",price:"$21",review:"Non-drying, smudge-proof liquid lipsticks in 6 universally flattering shades."},
+{cat:"Beauty",name:"LED Lighted Vanity Makeup Mirror",style:"3 Color Modes + 10X Magnification",material:"Touch Dimming + USB Rechargeable",fit:"180-Degree Swivel Stand",occasion:"Bedroom & Travel Vanity",price:"$29",review:"Hollywood-style lighted makeup mirror with natural daylight LEDs."},
+{cat:"Beauty",name:"Professional 14-Piece Makeup Brush Set",style:"Ultra-Soft Synthetic Bristles",material:"Rose Gold Ferrule + Travel Case",fit:"Face, Eyes, Blush & Contour",occasion:"Beginners & Pro Artists",price:"$18",review:"Cruelty-free luxury makeup brushes with leather storage pouch."},
+{cat:"Beauty",name:"Vitamin C & Hyaluronic Acid Face Serum",style:"20% Pure Vitamin C + E",material:"Organic Anti-Aging Brightener",fit:"All Skin Types (2 fl oz)",occasion:"Daily Morning Skincare",price:"$22",review:"Brightens dark spots, boosts collagen, and hydrates skin for a radiant glow."}
+];
+let currentCat='All';
+function renderItems(list){
+const g=document.getElementById('itemsGrid');
+g.innerHTML=list.length===0?'<p style="text-align:center;grid-column:1/-1;">No fashion items found.</p>':'';
+list.forEach(p=>{
+let q=p.name.split(" ").join("+");
+let amz="https://amazon.com"+"/s?k="+q+"&tag=techmobilerev-20";
+let ic=p.cat==="Dresses"?"👗":p.cat==="Shoes"?"👠":p.cat==="Bags"?"👜":p.cat==="Jewelry"?"💍":"💄";
+let bg=p.cat==="Dresses"?"linear-gradient(135deg,#db2777,#9d174d)":p.cat==="Shoes"?"linear-gradient(135deg,#9333ea,#6b21a8)":p.cat==="Bags"?"linear-gradient(135deg,#b45309,#78350f)":p.cat==="Jewelry"?"linear-gradient(135deg,#0284c7,#0369a1)":"linear-gradient(135deg,#e11d48,#9f1239)";
+g.innerHTML+=`<div class="card"><div><div style="background:`+bg+`;color:white;border-radius:10px;padding:18px 10px;text-align:center;margin-bottom:12px;"><div style="font-size:38px;margin-bottom:4px;">`+ic+`</div><div style="font-size:12px;font-weight:bold;opacity:0.95;">`+p.name+`</div></div><span class="cat-tag">${p.cat}</span><h3>${p.name}</h3><ul class="specs"><li><b>Style:</b> ${p.style}</li><li><b>Material:</b> ${p.material}</li><li><b>Fit:</b> ${p.fit}</li><li><b>Occasion:</b> ${p.occasion}</li></ul><p style="font-size:13.5px;color:#475569">${p.review}</p></div><div><div class="price">${p.price}</div><a href="`+amz+`" target="_blank" style="display:block;background:#FF9900;color:#0F172A;text-align:center;padding:9px;border-radius:6px;font-weight:bold;text-decoration:none;margin-top:8px;font-size:13.5px;">🛒 Check Price on Amazon</a></div></div>`;
+});
+}
+function filterCat(c,btn){currentCat=c;document.querySelectorAll('.filter-btn').forEach(x=>x.classList.remove('active'));btn.classList.add('active');filterItems();}
+function filterItems(){const q=document.getElementById('searchBox').value.toLowerCase();renderItems(fashionData.filter(p=>(currentCat==='All'||p.cat===currentCat)&&(p.name.toLowerCase().includes(q)||p.cat.toLowerCase().includes(q)||p.style.toLowerCase().includes(q))));}
+renderItems(fashionData);
+</script>
+</body>
+</html>
+

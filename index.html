@@ -52,8 +52,33 @@ footer{text-align:center;padding:25px;color:#64748b;font-size:13px;margin-top:40
 <div id="itemsGrid" class="grid"></div>
 </div>
 <footer>
+<div style="margin-bottom:12px;">
+<a href="javascript:void(0)" onclick="openLegal('about')" style="color:#be185d;font-weight:bold;text-decoration:none;margin:0 10px;">About Us</a> |
+<a href="javascript:void(0)" onclick="openLegal('privacy')" style="color:#be185d;font-weight:bold;text-decoration:none;margin:0 10px;">Privacy Policy</a> |
+<a href="javascript:void(0)" onclick="openLegal('contact')" style="color:#be185d;font-weight:bold;text-decoration:none;margin:0 10px;">Contact Us</a> |
+<a href="javascript:void(0)" onclick="openLegal('disclosure')" style="color:#be185d;font-weight:bold;text-decoration:none;margin:0 10px;">Affiliate Disclosure</a>
+</div>
 <p>© 2026 Glam Fashion Hub | Women Fashion & Beauty Mega-Store. As an Amazon Associate, we earn from qualifying purchases.</p>
 </footer>
+
+<div id="legalModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:9999;justify-content:center;align-items:center;padding:15px;">
+<div style="background:white;max-width:600px;width:100%;border-radius:12px;padding:25px;position:relative;max-height:80vh;overflow-y:auto;text-align:left;box-shadow:0 10px 30px rgba(0,0,0,0.3);">
+<button onclick="document.getElementById('legalModal').style.display='none'" style="position:absolute;top:12px;right:15px;background:#be185d;color:white;border:none;border-radius:50%;width:30px;height:30px;font-weight:bold;cursor:pointer;">X</button>
+<div id="legalContent"></div>
+</div>
+</div>
+
+<script>
+function openLegal(type){
+const c=document.getElementById('legalContent');
+if(type==='about'){c.innerHTML='<h2 style="color:#be185d;margin-bottom:10px;">About Glam Fashion Hub</h2><p>Welcome to <b>Glam Fashion Hub</b>, your ultimate online destination for Women Fashion, Asian & Ethnic Wear, Designer Dresses, Footwear, Handbags, Perfumes, Skincare, and Beauty products. Our team curates top-rated trending products from trusted global marketplaces like Amazon and AliExpress to help shoppers discover quality fashion at the best prices.</p>';}
+else if(type==='privacy'){c.innerHTML='<h2 style="color:#be185d;margin-bottom:10px;">Privacy Policy</h2><p>At <b>Glam Fashion Hub</b>, your privacy is important to us. We do not collect personal identification information unless voluntarily submitted. Third-party vendors, including Adsterra, Amazon, and AliExpress, may use cookies to serve relevant advertisements and track affiliate referrals when you click on product links. You can disable cookies through your browser settings at any time.</p>';}
+else if(type==='contact'){c.innerHTML='<h2 style="color:#be185d;margin-bottom:10px;">Contact Us</h2><p>Have questions, product suggestions, or business inquiries? We would love to hear from you!</p><p style="margin-top:10px;"><b>Email:</b> support@glamfashionhub.com<br><b>Website:</b> https://vercel.app</p><p style="margin-top:10px;color:#64748b;font-size:13px;">Our team responds to all messages within 24 to 48 hours.</p>';}
+else if(type==='disclosure'){c.innerHTML='<h2 style="color:#be185d;margin-bottom:10px;">Affiliate Disclosure</h2><p><b>Glam Fashion Hub</b> participates in the Amazon Services LLC Associates Program and AliExpress Affiliate Program. When you click on "Buy on Amazon" or "Buy on AliExpress" links on our website and make a purchase, we may earn a small commission at <b>zero extra cost to you</b>. This helps support our team in bringing you the latest fashion trends.</p>';}
+document.getElementById('legalModal').style.display='flex';
+}
+</script>
+
 <script>
 const fashionData=[
 {cat:"Dresses",name:"Floral Maxi Summer Sundress",style:"Bohemian Wrap V-Neck",material:"Soft Breathable Chiffon",fit:"A-Line Flowing Fit",occasion:"Casual, Beach & Party",price:"$39",review:"Elegant floral maxi dress with flattering waist tie and lightweight comfort."},

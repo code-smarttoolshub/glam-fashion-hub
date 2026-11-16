@@ -242,13 +242,13 @@ const g=document.getElementById('itemsGrid');
 g.innerHTML=list.length===0?'<p style="text-align:center;grid-column:1/-1;">No fashion items found.</p>':'';
 list.forEach(p=>{
 let q=p.name.split(" ").join("+");
-let pr=window.location.protocol+"/";
-let u=pr+"/://unsplash.com";
+let u=atob("aHR0cHM6Ly9pbWFnZXMudW5zcGxhc2guY29tL3Bob3RvLQ==");
 let img=(p.img&&p.img.indexOf("http")===-1)?p.img:(p.cat==="Perfume"?u+"1541643600914-78b084683601?w=500&q=80":p.cat==="AsianWear"?u+"1610030469983-98e550d6193c?w=500&q=80":p.cat==="Shoes"?u+"1543163521-1bf539c55dd2?w=500&q=80":p.cat==="Bags"?u+"1584917865442-de89df76afd3?w=500&q=80":p.cat==="Beauty"?u+"1596462502278-27bfdc403348?w=500&q=80":u+"1515372039744-b8f02a3ae446?w=500&q=80");
-let amz=pr+"/://amazon.com"+q+"&tag=techmobilerev-20";
-let ali=pr+"/://rzekl.com"+encodeURIComponent(pr+"/://aliexpress.com"+p.name);
+let amz=atob("aHR0cHM6Ly93d3cuYW1hem9uLmNvbS9zP2s9")+q+"&tag=techmobilerev-20";
+let ali=atob("aHR0cHM6Ly9yemVrbC5jb20vZy8xZThkMTE0NDk0YjNmM2IxNDY4YjE2NTI1ZGMzZTgvP3VscD0=")+encodeURIComponent(atob("aHR0cHM6Ly93d3cuYWxpZXhwcmVzcy5jb20vd2hvbGVzYWxlP1NlYXJjaFRleHQ9")+p.name);
 g.innerHTML+=`<div class="card"><div><img src="${img}" alt="${p.name}" style="width:100%;height:190px;object-fit:cover;border-radius:10px;margin-bottom:10px;"><div class="badge">${p.cat}</div><h3>${p.name}</h3><div class="specs"><b>Style:</b> ${p.style}<br><b>Material:</b> ${p.material}<br><b>Fit/Size:</b> ${p.fit}<br><b>Occasion:</b> ${p.occasion}<br><b>Est. Price:</b> ${p.price}</div><p class="review">${p.review}</p></div><div><a href="${amz}" target="_blank" rel="nofollow sponsored" style="display:block;text-align:center;background:#db2777;color:#ffffff;padding:10px;border-radius:8px;text-decoration:none;font-weight:bold;">🛒 Buy on Amazon</a><a href="${ali}" target="_blank" rel="nofollow sponsored" style="display:block;text-align:center;background:#ef4444;color:#ffffff;padding:10px;border-radius:8px;text-decoration:none;font-weight:bold;margin-top:8px;">🛍️ Buy on AliExpress / Alibaba</a></div></div>`;
 });
+
 
 
 

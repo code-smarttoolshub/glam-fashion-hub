@@ -242,12 +242,13 @@ const g=document.getElementById('itemsGrid');
 g.innerHTML=list.length===0?'<p style="text-align:center;grid-column:1/-1;">No fashion items found.</p>':'';
 list.forEach(p=>{
 let q=p.name.split(" ").join("+");
-
 let u="https://unsplash.com"+"/photo-";let img=(p.img&&!p.img.startsWith("http"))?p.img:(p.cat==="Perfume"?u+"1541643600914-78b084683601?w=500&q=80":p.cat==="AsianWear"?u+"1610030469983-98e550d6193c?w=500&q=80":p.cat==="Shoes"?u+"1543163521-1bf539c55dd2?w=500&q=80":p.cat==="Bags"?u+"1584917865442-de89df76afd3?w=500&q=80":p.cat==="Beauty"?u+"1596462502278-27bfdc403348?w=500&q=80":u+"1515372039744-b8f02a3ae446?w=500&q=80");
-let amz="https://amazon.com"+q+"&tag=techmobilerev-20";
-let ali="https://rzekl.com"+q;
+let amz="https://amazon.com"+"/s?k="+q+"&tag=techmobilerev-20";
+let ali="https://rzekl.com"+"/g/1e8d114494b3f3b1468b16525dc3e8/?ulp=https%3A%2F%://aliexpress.com%2Fwholesale%3FSearchText%3D"+q;
 g.innerHTML+=`<div class="card"><div><img src="${img}" alt="${p.name}" style="width:100%;height:190px;object-fit:cover;border-radius:10px;margin-bottom:10px;"><div class="badge">${p.cat}</div><h3>${p.name}</h3><div class="specs"><b>Style:</b> ${p.style}<br><b>Material:</b> ${p.material}<br><b>Fit/Size:</b> ${p.fit}<br><b>Occasion:</b> ${p.occasion}<br><b>Est. Price:</b> ${p.price}</div><p class="review">${p.review}</p></div><div><a href="${amz}" target="_blank" rel="nofollow sponsored" style="display:block;text-align:center;background:#db2777;color:#ffffff;padding:10px;border-radius:8px;text-decoration:none;font-weight:bold;">🛒 Buy on Amazon</a><a href="${ali}" target="_blank" rel="nofollow sponsored" style="display:block;text-align:center;background:#ef4444;color:#ffffff;padding:10px;border-radius:8px;text-decoration:none;font-weight:bold;margin-top:8px;">🛍️ Buy on AliExpress / Alibaba</a></div></div>`;
 });
+
+
 
 
 }
